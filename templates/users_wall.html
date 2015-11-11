@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>The Wall</title>
+	<link rel="stylesheet" type="text/css" href="{{  url_for('static', filename='wall.css')  }}">
+</head>
+<body>
+	<div id='wrapper'>
+		<div id='navigation'>
+			<h2>CodingDojo Wall</h2>
+			<div id='shift-right'>
+				<h3>Welcome <span>{{first_name}} {{last_name}}</span></h3>
+				<h3><a href="/">log off</a></h3>
+			</div>
+		</div>
+		<div id='post-message'>
+			<h2>Post a Message</h2>
+			<form action='/message' method='POST'>
+				<textarea rows='6' cols='110' name='message'></textarea>
+				<button>Post a message</button>
+			</form>
+		</div>
+		{% for message in messagedb %}
+			<div class='message'>
+				<h3>{{message['first_name']}} {{message['last_name']}} - {{message['created_at']}}</h3>
+				<p>{{message['message']}}</p>
+
+				{% for comment in commentdb %}
+					{% if comment['id'] == message['id'] %}
+					<div class='post-comment'>
+						<h4>{{comment['first_name']}} {{comment['last_name']}} {{comment['created_at']}}</h4>
+						<p>{{comment['comment']}}</p>
+					</div>
+					{% endif %}
+				{% endfor %}
+
+				<div class='post-comment'>
+					<h4>Post a comment</h4>
+					<form action='/comment' method='POST'>
+						<input type='hidden' name='message_id' value='{{message['id']}}'>
+						<textarea rows='6' cols='108' name='comment'></textarea>
+						<button>Post a comment</button>
+					</form>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+* {
+	padding: 0px;
+	margin: 0px auto;
+	font-family: "Helvetica";
+}
+
+#wrapper {
+	width: 960px;
+}
+
+#navigation {
+	margin-top: 10px;
+	border-bottom: 2px solid black;
+}
+
+#shift-right {
+	width: 760px;
+	text-align: right;
+	display: inline-block;
+	vertical-align: top;
+}
+
+h2, h3, a {
+	display: inline-block;
+	vertical-align: center;
+	line-height: 30px;
+}
+h3 a {
+	margin-left: 50px;
+}
+#post-message, .message {
+	width: 720px;
+	margin-left: 50px;
+	margin-top: 10px;
+}
+#post-message form {
+	text-align: right;
+}
+textarea {
+	margin-left: 30px;
+	margin-top: 5px;
+	display: block;
+}
+#post-message button {
+	margin-top: 5px;
+	padding: 8px;
+	color: white;
+	background-color: dodgerblue;
+	border-style: none;
+	border-radius: 3px;
+}
+.post-comment {
+	margin-bottom: 10px;
+}
+
+.message p, .post-comment h4 {
+	margin-top: 5px;
+	margin-left: 30px;
+}
+
+.post-comment h4 {
+	margin-top: 20px;
+}
+.post-comment p {
+	margin-left: 40px;
+}
+.post-comment textarea {
+	margin-left: 42px;
+}
+.post-comment form {
+	text-align: right;
+}
+.post-comment button {
+	margin-top: 5px;
+	padding: 8px;
+	color: white;
+	background-color: Limegreen;
+	border-style: none;
+	border-radius: 3px;
+}
+span {
+	color: dodgerblue;
+}
