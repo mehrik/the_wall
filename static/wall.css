@@ -37,8 +37,10 @@ h3 a {
 	text-align: right;
 }
 textarea {
-	margin-left: 30px;
+	margin-left: 25px;
 	margin-top: 5px;
+	padding: 5px;
+	font-size: 16px;
 	display: block;
 }
 #post-message button {
@@ -65,7 +67,7 @@ textarea {
 	margin-left: 40px;
 }
 .post-comment textarea {
-	margin-left: 42px;
+	margin-left: 43px;
 }
 .post-comment form {
 	text-align: right;

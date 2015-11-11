@@ -10,7 +10,14 @@ app.secret_key = 'maricIsTired'
 NAME_REGEX = re.compile(r'^[a-zA-z]{2,}$')
 EMAIL_REGEX = re.compile(r'^[a-za-z0-9\.\+_-]+@[a-za-z0-9\._-]+\.[a-za-z]*$')
 
-# MODEL FUNCTIONS
+###################
+###################
+#                 #
+# MODEL FUNCTIONS #
+#                 #
+###################
+###################
+
 def email_validate(email): 
 	query = mysql.fetch("SELECT * FROM users WHERE email='{}'".format(email))
 	return query
@@ -37,7 +44,15 @@ def post_comment(message_id, user_id, comment):
 	print query
 	mysql.run_mysql_query(query)
 
-# MODEL CONTROLLERS
+
+#####################
+#####################
+#                   #
+# MODEL CONTROLLERS #
+#                   #
+#####################
+#####################
+
 @app.route('/', methods=['GET'])
 def index():
 	return render_template('index.html')
@@ -120,5 +135,11 @@ def comment():
 	comment = request.form['comment']
 	post_comment(message_id, user_id, comment)
 	return redirect('/wall')
+
+@app.route('/logoff')
+def logoff():
+	session.clear()
+	flash('You have successfully logged off!')
+	return redirect('/')
 
 app.run(debug=True)
