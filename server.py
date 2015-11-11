@@ -23,25 +23,23 @@ def email_validate(email):
 	return query
 
 def getMessages():
-	query = mysql.fetch("SELECT user_id, first_name, last_name, messages.created_at, message, messages.id FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.created_at DESC")
+	query = mysql.fetch("SELECT user_id, first_name, last_name, DATE_FORMAT(messages.created_at, '%b %D %Y') as timestamp, message, messages.id FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.created_at DESC")
 	return query
 
 def getComments():
-	query = mysql.fetch("SELECT comment, messages.id, first_name, last_name, comments.created_at FROM comments JOIN messages ON messages.id = comments.message_id JOIN users ON users.id = comments.user_id ORDER BY comments.created_at DESC")
+	query = mysql.fetch("SELECT comment, messages.id, first_name, last_name, DATE_FORMAT(comments.created_at, '%b %D %Y') as timestamp FROM comments JOIN messages ON messages.id = comments.message_id JOIN users ON users.id = comments.user_id ORDER BY comments.created_at DESC")
 	return query
 
 def post_message(user_id, message):
 	message = str(message).replace("'", "\\'")
 	insert = "INSERT INTO `the_wall_db`.`messages` (`user_id`, `message`, `created_at`, `updated_at`) VALUES ('{}', '{}', NOW(), NOW())" 
 	query = insert.format(user_id, message)
-	print query
 	mysql.run_mysql_query(query)
 
 def post_comment(message_id, user_id, comment):
 	comment = str(comment).replace("'", "\\'")
 	insert = "INSERT INTO `the_wall_db`.`comments` (`message_id`, `user_id`, `comment`, `created_at`, `updated_at`) VALUES ('{}', '{}', '{}', NOW(), NOW())" 
 	query = insert.format(message_id, user_id, comment)
-	print query
 	mysql.run_mysql_query(query)
 
 
@@ -118,7 +116,6 @@ def homepage():
 	session['user_id'] = user_info[0]['id']
 	messagedb = getMessages()
 	commentdb = getComments()
-	print commentdb
 	return render_template('/users_wall.html', first_name=first_name, last_name=last_name, messagedb=messagedb, commentdb=commentdb)
 
 @app.route('/message', methods=['POST'])

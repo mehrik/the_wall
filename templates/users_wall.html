@@ -22,13 +22,13 @@
 		</div>
 		{% for message in messagedb %}
 			<div class='message'>
-				<h3>{{message['first_name']}} {{message['last_name']}} - {{message['created_at']}}</h3>
+				<h3>{{message['first_name']}} {{message['last_name']}} - <time datetime='MM/DD/YYYY'>{{message['timestamp']}}</time></h3>
 				<p>{{message['message']}}</p>
 
 				{% for comment in commentdb %}
 					{% if comment['id'] == message['id'] %}
 					<div class='post-comment'>
-						<h4>{{comment['first_name']}} {{comment['last_name']}} {{comment['created_at']}}</h4>
+						<h4>{{comment['first_name']}} {{comment['last_name']}} - {{comment['timestamp']}}</h4>
 						<p>{{comment['comment']}}</p>
 					</div>
 					{% endif %}
